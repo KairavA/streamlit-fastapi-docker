@@ -1,28 +1,17 @@
 import streamlit as st
 import requests
 
-st.title('Iris Species Prediction')
+st.set_page_config(page_title="AI ML Prediction Models")
+st.write("# Welcome to AI Apps Home Page! 👋")
 
-sepal_length = st.slider('Sepal Length', 4.0, 8.0)
-sepal_width = st.slider('Sepal Width', 2.0, 5.0)
-petal_length = st.slider('petal Length', 1.0, 6.9)
-petal_width = st.slider('petal Width', 0.0, 2.5)
+st.markdown(
+    """
+    Here are some collection of Machine Learning and Data Science projects.
 
-#Convert to float
-sepal_length=float(sepal_length)
-sepal_width=float(sepal_width)
-petal_length = float(petal_length)
-petal_width = float(petal_width)
+    **👈 Select a project from the menu on the left** """
+)
 
-input_data = {
-            "features": [sepal_length, 
-                         sepal_width,
-                        petal_length, 
-                        petal_width]
-            
-              }  
-st.write(input_data)
-response = requests.post('http://backend:8000/predict/', json=input_data)
-st.write(response.json())
-prediction = response.json()
-st.write(f"Predicted Species: {prediction}")
+iris_page = st.Page("iris_app.py", title="Iris Prediction")
+depression_page = st.Page("depression_app.py", title="Patient Depression Prediction")
+pg = st.navigation([iris_page, depression_page])
+pg.run()

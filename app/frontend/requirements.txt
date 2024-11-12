@@ -4,3 +4,4 @@ joblib
 scikit-learn
 requests
 streamlit
+streamlit-navigation-bar

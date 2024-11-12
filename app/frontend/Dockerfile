@@ -1,5 +1,5 @@
 # Start from the official Python base image.
-FROM python:3.9.11-buster
+FROM python:3.13
 
 # Set the current working directory to /project. 
 # This is where we'll put the requirements.txt file and the app directory.

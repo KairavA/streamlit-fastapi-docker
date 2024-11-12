@@ -8,18 +8,19 @@ iris = load_iris()
 # Initialize FastAPI app
 app = FastAPI()
 
-# Load the trained model 
-model = joblib.load('model.joblib')
+
 
 # Define FastAPI endpoints
 @app.get("/")
 async def read_root():
     return {"message": "Welcome to the model API!"}
 
-@app.post("/predict/")
-async def predict_species(data: dict):
+@app.post("/iris/predict/")
+async def predict_iris_species(data: dict):
     # Implement your prediction logic here using the loaded model
+    # Load the trained model 
+    iris_model = joblib.load('trained_models\iris_model.joblib')
     features = np.array(data['features']).reshape(1, -1)
-    prediction = model.predict(features)
+    prediction = iris_model.predict(features)
     class_name = iris.target_names[prediction][0]
     return {"class": class_name}
